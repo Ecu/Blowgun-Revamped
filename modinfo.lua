@@ -1,0 +1,15 @@
+name = "Blowgun Revamped"
+description = "An overhaul mod of the blow dart mechanics."
+author = "Ecu"
+version = "0.0.1"
+forumthread = ""
+api_version = 10
+dont_starve_compatible = false
+reign_of_giants_compatible = false
+shipwrecked_compatible = false
+dst_compatible = true
+--icon_atlas = ""
+--icon = ""
+all_clients_require_mod = true
+client_only_mod = false
+server_filter_tags = {}
