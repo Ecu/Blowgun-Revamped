@@ -16,21 +16,23 @@ local prefabs =
 }
 
 -- On a hit, hit the target and damage it.  Remove dart afterwards.
-local function OnHit(inst, owner, target)
+local function OnHit(inst, attacker, target)
     local impactfx = SpawnPrefab("impact")
+
     if impactfx ~= nil then
         local follower = impactfx.entity:AddFollower()
         follower:FollowSymbol(target.GUID, target.components.combat.hiteffectsymbol, 0, 0, 0)
-        if owner ~= nil then
-            impactfx:FacePoint(owner.Transform:GetWorldPosition())
-			target.components.combat:GetAttacked(owner, TUNING.BLOWGUN_REVAMPED.FIRE_DART_DAMAGE)
+        if attacker ~= nil then
+            impactfx:FacePoint(attacker.Transform:GetWorldPosition())
+			target.components.combat:SuggestTarget(attacker)
+			target.components.combat:GetAttacked(attacker, TUNING.BLOWGUN_REVAMPED.FIRE_DART_DAMAGE)
         end
     end
 	inst:Remove()
 end
 
 -- On a miss, spawn the dart for pickup.  Remove projectile dart afterwards.
-local function OnMiss(inst, owner, target)
+local function OnMiss(inst, attacker, target)
 	local dart = SpawnPrefab("fire_dart")
 	if dart then
 		local x, y, z = inst.Transform:GetWorldPosition()
