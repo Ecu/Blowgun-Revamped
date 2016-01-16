@@ -34,12 +34,12 @@ end
 local function OnPercentChange(inst, data)
 	if inst.components.reloadable:IsDepleted() then
 		if inst.components.weapon then
-			--inst:AddTag("nopunch")
+			inst:AddTag("nopunch")
 			inst:RemoveComponent("weapon")
 		end
 	else
 		if inst.components.weapon == nil then
-			--inst:RemoveTag("nopunch")
+			inst:RemoveTag("nopunch")
 			MakeWeapon(inst)
 		end
 	end
